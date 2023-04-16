@@ -14,5 +14,6 @@ namespace Level_plus___Team_23.Data
             : base(options)
         {
         }
+        public DbSet<Level_plus___Team_23.Models.Course> Course { get; set; }
     }
 }

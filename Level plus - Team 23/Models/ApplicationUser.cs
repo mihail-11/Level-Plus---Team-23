@@ -8,5 +8,7 @@ namespace Level_plus___Team_23.Models
         public string Surname { get; set; }
         public string Role { get; set; }
         public string Password { get; set; }
+
+        public string Picture { get; set; }
     }
 }

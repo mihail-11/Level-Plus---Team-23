@@ -53,6 +53,7 @@ namespace Level_plus___Team_23.Controllers
                         EmailConfirmed = true,
                         PhoneNumberConfirmed = true,
                         PhoneNumber = request.PhoneNumber,
+                        Picture = request.Picture
                     };
                     var result = await userManager.CreateAsync(user, request.Password);
                     if (result.Succeeded)
