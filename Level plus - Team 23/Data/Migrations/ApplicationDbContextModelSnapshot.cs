@@ -19,6 +19,35 @@ namespace Level_plus___Team_23.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Level_plus___Team_23.Models.Course", b =>
+                {
+                    b.Property<int>("CourseID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<string>("StudentId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VideoUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CourseID");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Course");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -235,6 +264,9 @@ namespace Level_plus___Team_23.Data.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Picture")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
@@ -242,6 +274,13 @@ namespace Level_plus___Team_23.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("Level_plus___Team_23.Models.Course", b =>
+                {
+                    b.HasOne("Level_plus___Team_23.Models.ApplicationUser", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
