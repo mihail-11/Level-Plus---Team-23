@@ -440,3 +440,8 @@ D:\FINKI\osmi semestar\Upravuvanje na IKT proekti\Proekt\Level plus - Team 23\ob
 D:\FINKI\osmi semestar\Upravuvanje na IKT proekti\Proekt\Level plus - Team 23\obj\Debug\netcoreapp3.1\Razor\Views\Courses\Details.cshtml.g.cs
 D:\FINKI\osmi semestar\Upravuvanje na IKT proekti\Proekt\Level plus - Team 23\obj\Debug\netcoreapp3.1\Razor\Views\Courses\Edit.cshtml.g.cs
 D:\FINKI\osmi semestar\Upravuvanje na IKT proekti\Proekt\Level plus - Team 23\obj\Debug\netcoreapp3.1\Razor\Views\Courses\Index.cshtml.g.cs
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\obj\Debug\netcoreapp3.1\Razor\Views\Courses\Create.cshtml.g.cs
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\obj\Debug\netcoreapp3.1\Razor\Views\Courses\Delete.cshtml.g.cs
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\obj\Debug\netcoreapp3.1\Razor\Views\Courses\Details.cshtml.g.cs
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\obj\Debug\netcoreapp3.1\Razor\Views\Courses\Edit.cshtml.g.cs
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\obj\Debug\netcoreapp3.1\Razor\Views\Courses\Index.cshtml.g.cs
