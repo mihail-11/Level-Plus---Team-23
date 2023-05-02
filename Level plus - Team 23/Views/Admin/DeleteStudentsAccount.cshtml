@@ -1,0 +1,14 @@
+﻿@model ICollection<Level_plus___Team_23.Models.ApplicationUser>
+
+    <h1>Delete student's account</h1>
+
+    @foreach(var item in Model) {
+        <div style="border: dashed blue 1px">
+            <p>
+                @item.Name @item.Surname, @item.Email
+            </p>
+            
+            <a class="btn btn-outline-danger btn-sm" asp-controller="Admin" asp-action="DeleteStudentsAccountPost" asp-route-accountId="@item.Id">Delete</a>
+
+         </div>    
+    }

@@ -445,3 +445,15 @@ C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\obj\De
 C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\obj\Debug\netcoreapp3.1\Razor\Views\Courses\Details.cshtml.g.cs
 C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\obj\Debug\netcoreapp3.1\Razor\Views\Courses\Edit.cshtml.g.cs
 C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\obj\Debug\netcoreapp3.1\Razor\Views\Courses\Index.cshtml.g.cs
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\bin\Debug\netcoreapp3.1\BouncyCastle.Cryptography.dll
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\bin\Debug\netcoreapp3.1\System.Formats.Asn1.dll
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\bin\Debug\netcoreapp3.1\System.Security.Cryptography.Cng.dll
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\bin\Debug\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\bin\Debug\netcoreapp3.1\System.Text.Encoding.CodePages.dll
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Security.Cryptography.Cng.dll
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Text.Encoding.CodePages.dll
+C:\Users\Bojan\Documents\GitHub\Level-Plus---Team-23\Level plus - Team 23\obj\Debug\netcoreapp3.1\Razor\Views\Admin\DeleteStudentsAccount.cshtml.g.cs

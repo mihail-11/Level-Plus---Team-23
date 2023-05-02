@@ -15,10 +15,10 @@ namespace Level_plus___Team_23.Controllers
     public class LevelPlusAccountController : Controller
     {
         private DbSet<ApplicationUser> entities;
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
         private readonly ApplicationDbContext context;
-        public LevelPlusAccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
+        public LevelPlusAccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,
             ApplicationDbContext context)
         {
             this.context = context;
@@ -53,7 +53,7 @@ namespace Level_plus___Team_23.Controllers
                         EmailConfirmed = true,
                         PhoneNumberConfirmed = true,
                         PhoneNumber = request.PhoneNumber,
-                        Picture = request.Picture
+                        //Picture = "urlTODO" //request.Picture
                     };
                     var result = await userManager.CreateAsync(user, request.Password);
                     if (result.Succeeded)
