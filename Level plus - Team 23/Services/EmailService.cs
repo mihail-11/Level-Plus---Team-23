@@ -12,7 +12,7 @@ namespace Level_plus___Team_23.Services
     public class EmailService
     {
 
-        public EmailService(EmailSettings settings) {}
+        public EmailService() {}
 
         public async Task SendEmailAsync(EmailMessage emailMessage)
         {
@@ -60,10 +60,10 @@ namespace Level_plus___Team_23.Services
         {
             return new EmailSettings
             {
-                SmtpServer = "test",
-                SmtpUserName = "test",
-                SmtpPassword = "test",
-                SmtpServerPort = 1,
+                SmtpServer = "smtp.gmail.com",
+                SmtpUserName = "level.plus.team23@gmail.com",
+                SmtpPassword = "hxqommnlketduqhx",
+                SmtpServerPort = 587,
                 EnableSsl = true,
                 EmailDisplayName = "test",
                 SendersName = "test"
