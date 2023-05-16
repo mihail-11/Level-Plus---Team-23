@@ -17,8 +17,8 @@ namespace Level_plus___Team_23.Services
         public async Task SendEmailAsync(EmailMessage emailMessage)
         {
             EmailSettings settings = createEmailSettings();
-            string subject = "subject placeholder";
-            string content = "content placeholder";
+            string subject = "Certificate Confirmation";
+            string content = createEmailContent(emailMessage.course);
 
             var mimeMessage = new MimeMessage
             {
@@ -30,7 +30,7 @@ namespace Level_plus___Team_23.Services
 
             mimeMessage.Body = new TextPart(MimeKit.Text.TextFormat.Plain) { Text = content };
 
-            mimeMessage.To.Add(new MailboxAddress(emailMessage.MailTo, emailMessage.MailTo));
+            mimeMessage.To.Add(new MailboxAddress(emailMessage.mailAddress, emailMessage.mailAddress));
 
             try
             {
@@ -65,9 +65,23 @@ namespace Level_plus___Team_23.Services
                 SmtpPassword = "hxqommnlketduqhx",
                 SmtpServerPort = 587,
                 EnableSsl = true,
-                EmailDisplayName = "test",
-                SendersName = "test"
+                EmailDisplayName = "level_plus",
+                SendersName = "level_plus"
             };
+        }
+
+        private string createEmailContent(Course course)
+        {
+            return $@"Dear {course.Student.Name},
+
+We are pleased to inform you that you have successfully completed the {course.Title} course.
+
+As a token of recognition for your hard work and dedication, we are delighted to attach your official certificate of completion to this email. The certificate acknowledges your commitment to enhancing your knowledge and skills in the field of {course.Title}, and serves as evidence of your accomplishment in completing this course.
+We would like to extend our heartfelt congratulations to you for your remarkable achievement. Your dedication and effort in successfully completing the program are commendable, and we are confident that this accomplishment will greatly contribute to your personal and professional growth.
+
+Thank you for your participation and dedication to the {course.Title} course. We wish you all the best in your future endeavors.
+Sincerely,
+Level Plus.";
         }
     }
 }
