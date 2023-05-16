@@ -1,0 +1,33 @@
+﻿@model ICollection<Level_plus___Team_23.Models.ApplicationUser>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2 style="color: #495057">Admin Dashboard</h2>
+<hr />
+
+<div class="container">
+    <div class="row mt-1">
+        <nav class="navbar-collapse nav-style navbar-light col-sm-6 col-md-4 col-lg-3 d-md-block sidebar collapse" id="sidebarMenu">
+            <div class="sidebar-sticky">
+                          
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Courses" asp-action="Index">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="LevelPlusAccount" asp-action="GiveRole">Give Role</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Admin" asp-action="DeleteStudentsAccount">Delete Student's Account</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+</div>

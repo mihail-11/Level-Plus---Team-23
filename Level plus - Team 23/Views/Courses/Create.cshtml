@@ -4,43 +4,44 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Course</h4>
+<h2 style="color: #495057">Create Course</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+          
+            <div class="input-wrapper mt-3">
+                <input asp-for="Title" class="create-input" type="text" id="title" required>
+                <label asp-for="Title" class="create-label" for="user">title</label>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+
+            <div class="input-wrapper mt-3">
+                <textarea asp-for="Description" class="create-input" id="description" rows="6" required> </textarea>
+               
+                <label asp-for="Description" class="create-label" for="description">Description</label>
             </div>
-            <div class="form-group">
-                <label asp-for="VideoUrl" class="control-label"></label>
-                <input asp-for="VideoUrl" class="form-control" />
-                <span asp-validation-for="VideoUrl" class="text-danger"></span>
+            <div class="input-wrapper mt-3">
+                <input asp-for="VideoUrl" class="create-input" type="text" id="videoUrl" required>
+                <label asp-for="VideoUrl" class="create-label" for="videoUrl">Video Url</label>
             </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+
+
+            <div class="input-wrapper mt-3">
+                <input asp-for="Price" class="create-input" type="text" id="price" required>
+                <label asp-for="Price" class="create-label" for="user">price</label>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="mt-5">
+                <input type="submit" value="Create" class="btn" style="background-color: #74b588; margin-left: 10px; color:white" />
+
+                <a class="btn" style="background-color: #adb5bd; margin-left: 10px; color:white" asp-action="Index">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+   
 </div>
 
 @section Scripts {

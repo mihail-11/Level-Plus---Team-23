@@ -24,6 +24,11 @@ namespace Level_plus___Team_23.Controllers
             entities = context.Set<ApplicationUser>();
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         public IActionResult DeleteStudentsAccount()
         {
             return View(entities.ToList());

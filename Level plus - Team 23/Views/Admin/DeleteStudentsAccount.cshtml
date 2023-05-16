@@ -1,14 +1,29 @@
 ﻿@model ICollection<Level_plus___Team_23.Models.ApplicationUser>
 
-    <h1>Delete student's account</h1>
-
-    @foreach(var item in Model) {
-        <div style="border: dashed blue 1px">
-            <p>
-                @item.Name @item.Surname, @item.Email
-            </p>
-            
-            <a class="btn btn-outline-danger btn-sm" asp-controller="Admin" asp-action="DeleteStudentsAccountPost" asp-route-accountId="@item.Id">Delete</a>
-
-         </div>    
-    }
+<h2 style="color: #495057">Delete student's account</h2>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Email</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Surname</td>
+                <td>@item.Email</td>
+                <td>
+                   @if (item.Role == "User"){
+                        <a class="btn btn-outline-danger btn-sm" asp-controller="Admin" asp-action="DeleteStudentsAccountPost" asp-route-accountId="@item.Id">Delete account</a>
+                    }
+                </td>
+            </tr>
+        }
+   </tbody>
+</table>

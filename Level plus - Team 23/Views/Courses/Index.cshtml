@@ -4,13 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h2 style="color: #495057">Courses</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<p class="mt-5">
+    <a class="btn" style="background-color: #74b588; color:white"  asp-action="Create">Create New Course</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table mt-5">
+    <thead style="background-color: #74b588; color: white;">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
@@ -37,7 +37,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VideoUrl)
+                 <a href=" @Html.DisplayFor(modelItem => item.VideoUrl)"> @Html.DisplayFor(modelItem => item.VideoUrl)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)

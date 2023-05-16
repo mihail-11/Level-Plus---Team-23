@@ -1,0 +1,11 @@
+﻿
+
+.nav-style {
+    background-color:#74b588;
+    color: white;
+    border-radius: 5px;
+}
+.nav-item a {
+    color: unset;
+    text-decoration: none;
+}
