@@ -11,11 +11,17 @@ namespace Level_plus___Team_23.Services
 {
     public class EmailService
     {
+        private PdfService pdfService;
 
-        public EmailService() {}
+        public EmailService() {
+        pdfService = new PdfService();
+        }
 
         public async Task SendEmailAsync(EmailMessage emailMessage)
         {
+
+            var attachment = pdfService.createPdfCertificateAttachment();
+
             EmailSettings settings = createEmailSettings();
             string subject = "Certificate Confirmation";
             string content = createEmailContent(emailMessage.course);
@@ -28,7 +34,13 @@ namespace Level_plus___Team_23.Services
 
             mimeMessage.From.Add(new MailboxAddress(settings.EmailDisplayName, settings.SmtpUserName));
 
-            mimeMessage.Body = new TextPart(MimeKit.Text.TextFormat.Plain) { Text = content };
+            var builder = new BodyBuilder();
+
+            builder.TextBody = content;
+
+            builder.Attachments.Add(attachment);
+
+            mimeMessage.Body = builder.ToMessageBody();
 
             mimeMessage.To.Add(new MailboxAddress(emailMessage.mailAddress, emailMessage.mailAddress));
 
