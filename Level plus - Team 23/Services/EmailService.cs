@@ -20,7 +20,7 @@ namespace Level_plus___Team_23.Services
         public async Task SendEmailAsync(EmailMessage emailMessage)
         {
 
-            var attachment = pdfService.createPdfCertificateAttachment();
+            var attachment = pdfService.createPdfCertificateAttachment(emailMessage.course);
 
             EmailSettings settings = createEmailSettings();
             string subject = "Certificate Confirmation";
