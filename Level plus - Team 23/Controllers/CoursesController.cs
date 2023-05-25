@@ -8,22 +8,22 @@ using Microsoft.EntityFrameworkCore;
 using Level_plus___Team_23.Data;
 using Level_plus___Team_23.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Level_plus___Team_23.Controllers
 {
     public class CoursesController : Controller
     {
         private readonly ApplicationDbContext _context;
-
         public CoursesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // GET: Courses
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Course.ToListAsync());
+            return View(_context.courses.ToList());
         }
 
         // GET: Courses/Details/5
@@ -35,7 +35,7 @@ namespace Level_plus___Team_23.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Course
+            var course = await _context.courses
                 .FirstOrDefaultAsync(m => m.CourseID == id);
             if (course == null)
             {
@@ -77,7 +77,7 @@ namespace Level_plus___Team_23.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Course.FindAsync(id);
+            var course = await _context.courses.FindAsync(id);
             if (course == null)
             {
                 return NotFound();
@@ -130,7 +130,7 @@ namespace Level_plus___Team_23.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Course
+            var course = await _context.courses
                 .FirstOrDefaultAsync(m => m.CourseID == id);
             if (course == null)
             {
@@ -146,15 +146,15 @@ namespace Level_plus___Team_23.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var course = await _context.Course.FindAsync(id);
-            _context.Course.Remove(course);
+            var course = await _context.courses.FindAsync(id);
+            _context.courses.Remove(course);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CourseExists(int id)
         {
-            return _context.Course.Any(e => e.CourseID == id);
+            return _context.courses.Any(e => e.CourseID == id);
         }
     }
 }

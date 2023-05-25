@@ -10896,19 +10896,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\Bojan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FINKI\\osmi semestar\\Upravuvanje na IKT proekti\\Proekt\\Level plus - Team 23\\Level plus - Team 23.csproj",
+      "projectUniqueName": "C:\\Users\\Bojan\\Documents\\GitHub\\Level-Plus---Team-23\\Level plus - Team 23\\Level plus - Team 23.csproj",
       "projectName": "Level plus - Team 23",
-      "projectPath": "D:\\FINKI\\osmi semestar\\Upravuvanje na IKT proekti\\Proekt\\Level plus - Team 23\\Level plus - Team 23.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\FINKI\\osmi semestar\\Upravuvanje na IKT proekti\\Proekt\\Level plus - Team 23\\obj\\",
+      "projectPath": "C:\\Users\\Bojan\\Documents\\GitHub\\Level-Plus---Team-23\\Level plus - Team 23\\Level plus - Team 23.csproj",
+      "packagesPath": "C:\\Users\\Bojan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Bojan\\Documents\\GitHub\\Level-Plus---Team-23\\Level plus - Team 23\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Bojan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10980,6 +10980,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.1.32, 3.1.32]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -10988,7 +10994,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -10,10 +10,10 @@ namespace Level_plus___Team_23.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         public virtual DbSet<ApplicationUser> users { get; set; }
+        public virtual DbSet<Level_plus___Team_23.Models.Course> courses { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
-        public DbSet<Level_plus___Team_23.Models.Course> Course { get; set; }
     }
 }
