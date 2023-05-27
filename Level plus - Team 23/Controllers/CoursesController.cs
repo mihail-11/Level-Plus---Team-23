@@ -9,6 +9,8 @@ using Level_plus___Team_23.Data;
 using Level_plus___Team_23.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using System.Diagnostics;
 
 namespace Level_plus___Team_23.Controllers
 {
@@ -46,16 +48,31 @@ namespace Level_plus___Team_23.Controllers
         }
 
         // GET: Courses/Create
-        [Authorize(Roles ="Student")]
         public IActionResult Create()
         {
-            return View();
+            return this.authenticate();
         }
+        public IActionResult authenticate(Course course=null)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return RedirectToAction("Error", "Home");
 
+            }
+            ApplicationUser user = _context.users.Find(userId);
+            if (user.Role == "Admin")
+            {
+                if (course == null)
+                    return View();
+                else return View (course);
+            }
+            return RedirectToAction("Error", "Home");
+        }
         // POST: Courses/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, Authorize(Roles ="Student")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CourseID,Title,Description,VideoUrl,Price")] Course course)
         {
@@ -69,7 +86,6 @@ namespace Level_plus___Team_23.Controllers
         }
 
         // GET: Courses/Edit/5
-        [Authorize(Roles = "Student")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,7 +98,7 @@ namespace Level_plus___Team_23.Controllers
             {
                 return NotFound();
             }
-            return View(course);
+            return this.authenticate(course);
         }
 
         // POST: Courses/Edit/5
@@ -90,7 +106,6 @@ namespace Level_plus___Team_23.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Student")]
         public async Task<IActionResult> Edit(int id, [Bind("CourseID,Title,Description,VideoUrl,Price")] Course course)
         {
             if (id != course.CourseID)
@@ -136,8 +151,7 @@ namespace Level_plus___Team_23.Controllers
             {
                 return NotFound();
             }
-
-            return View(course);
+            return this.authenticate(course);
         }
 
         // POST: Courses/Delete/5
