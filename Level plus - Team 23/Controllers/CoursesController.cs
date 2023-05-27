@@ -11,15 +11,22 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Diagnostics;
+using Level_plus___Team_23.Interfaces;
+using Microsoft.Extensions.Logging;
+using Level_plus___Team_23.DTO;
 
 namespace Level_plus___Team_23.Controllers
 {
     public class CoursesController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public CoursesController(ApplicationDbContext context)
+        private readonly ICourseService _courseService;
+        private readonly ILogger<CoursesController> _logger;
+        public CoursesController(ApplicationDbContext context, ICourseService courseService, ILogger<CoursesController> logger)
         {
             _context = context;
+            _courseService = courseService;
+            _logger = logger;
         }
 
         // GET: Courses
@@ -30,7 +37,7 @@ namespace Level_plus___Team_23.Controllers
 
         // GET: Courses/Details/5
         [AllowAnonymous]
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
             {
@@ -86,7 +93,7 @@ namespace Level_plus___Team_23.Controllers
         }
 
         // GET: Courses/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
             {
@@ -106,7 +113,7 @@ namespace Level_plus___Team_23.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CourseID,Title,Description,VideoUrl,Price")] Course course)
+        public async Task<IActionResult> Edit(Guid id, [Bind("CourseID,Title,Description,VideoUrl,Price")] Course course)
         {
             if (id != course.CourseID)
             {
@@ -138,7 +145,7 @@ namespace Level_plus___Team_23.Controllers
 
         // GET: Courses/Delete/5
         [Authorize]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -158,7 +165,7 @@ namespace Level_plus___Team_23.Controllers
         [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var course = await _context.courses.FindAsync(id);
             _context.courses.Remove(course);
@@ -166,9 +173,35 @@ namespace Level_plus___Team_23.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CourseExists(int id)
+        private bool CourseExists(Guid id)
         {
             return _context.courses.Any(e => e.CourseID == id);
+        }
+
+        public IActionResult AddCourseToCart(Guid id)
+        {
+            var result = this._courseService.GetShoppingCartInfo(id);
+
+            return View(result);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddCourseToCart(AddToShoppingCartDTO model)
+        {
+
+            _logger.LogInformation("User Request -> Add Product in ShoppingCart and save changes in database!");
+
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var result = this._courseService.AddToShoppingCart(model, userId);
+
+            if (result)
+            {
+                return RedirectToAction("Index", "Courses");
+            }
+            return View(model);
         }
     }
 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bojan\\Documents\\GitHub\\Level-Plus---Team-23\\Level plus - Team 23\\Level plus - Team 23.csproj": {}
+    "C:\\Users\\User\\Source\\Repos\\Level-Plus---Team-23(7)\\Level plus - Team 23\\Level plus - Team 23.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bojan\\Documents\\GitHub\\Level-Plus---Team-23\\Level plus - Team 23\\Level plus - Team 23.csproj": {
+    "C:\\Users\\User\\Source\\Repos\\Level-Plus---Team-23(7)\\Level plus - Team 23\\Level plus - Team 23.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bojan\\Documents\\GitHub\\Level-Plus---Team-23\\Level plus - Team 23\\Level plus - Team 23.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\Level-Plus---Team-23(7)\\Level plus - Team 23\\Level plus - Team 23.csproj",
         "projectName": "Level plus - Team 23",
-        "projectPath": "C:\\Users\\Bojan\\Documents\\GitHub\\Level-Plus---Team-23\\Level plus - Team 23\\Level plus - Team 23.csproj",
-        "packagesPath": "C:\\Users\\Bojan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bojan\\Documents\\GitHub\\Level-Plus---Team-23\\Level plus - Team 23\\obj\\",
+        "projectPath": "C:\\Users\\User\\Source\\Repos\\Level-Plus---Team-23(7)\\Level plus - Team 23\\Level plus - Team 23.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Source\\Repos\\Level-Plus---Team-23(7)\\Level plus - Team 23\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bojan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,6 +73,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.5, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[41.18.0, )"
             }
           },
           "imports": [
@@ -81,17 +85,10 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.1.32, 3.1.32]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -100,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.409\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,0 +1,29 @@
+﻿@model Level_plus___Team_23.DTO.AddToShoppingCartDTO
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center">Do you want to add the selected course to your cart?</h3>
+
+<div class="row mt-4">
+    <div class="col-md-4 m-auto">
+        <form method="post" asp-action="AddCourseToCart">
+            <input type="hidden" asp-for="SelectedCourseId" />
+            <div class="form-group">
+                <label asp-for="SelectedCourse.Title"></label>
+                <input disabled asp-for="SelectedCourse.Title" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SelectedCourse.Description"></label>
+                <input disabled asp-for="SelectedCourse.Description" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
