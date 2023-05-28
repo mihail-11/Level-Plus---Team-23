@@ -6,7 +6,8 @@
 
 
 <div class="container">
-    <h1>Login</h1>
+    <h2 style="color: #495057">Login</h2>
+    <hr />
     @Html.ValidationSummary()
     <form asp-action="Login" asp-controller="LevelPlusAccount" method="post">
 
@@ -30,9 +31,9 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-sm-12">
                 <div class="col-sm-12 btn-submit">
-                    <button type="submit" class="btn btn-success">Login</button>
+                    <button type="submit" class="btn" style="background-color: #74b588; color: #fff">Login</button>
                     <a asp-action="Register" asp-controller="LevelPlusAccount">Don't have an account?Click to Register</a>
 
                 </div>

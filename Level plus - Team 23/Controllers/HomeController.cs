@@ -1,5 +1,7 @@
-﻿using Level_plus___Team_23.Models;
+﻿using Level_plus___Team_23.Data;
+using Level_plus___Team_23.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -12,15 +14,19 @@ namespace Level_plus___Team_23.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
-
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            await _context.courses.ToListAsync();
+            var courses = await _context.courses.ToListAsync();
+            return View(courses);
+
         }
 
         public IActionResult Privacy()

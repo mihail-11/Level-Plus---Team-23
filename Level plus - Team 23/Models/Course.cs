@@ -13,6 +13,7 @@ namespace Level_plus___Team_23.Models
         public string Description { get; set; }
 
         public string VideoUrl { get; set; }
+        public string CourseImg { get; set; }
 
         public float Price { get; set; }
 

@@ -1,134 +1,175 @@
 ﻿@model Level_plus___Team_23.DTO.AllCourses
 @using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <h2 style="color: #495057">Courses</h2>
+<hr/>
+   @if (User.Identity.IsAuthenticated)
+{
 
-<p class="mt-5">
-    <a class="btn" style="background-color: #74b588; color:white"  asp-action="Create">Create New Course</a>
-</p>
+    @if (SignInManager.IsSignedIn(User))
+    {
 
-<p class="mt-5">
-    <a class="btn liked-courses" style="background-color: #74b588; color:white">See others favourite Courses</a>
-</p>
-<table class="table mt-5 liked-table">
-    <thead style="background-color: #74b588; color: white;">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Courses[0].Title)
-            </th>
-            <th>
-                Count
-            </th>
-        </tr>
-    </thead>
-    <tbody class="tbody-liked">
-    </tbody>
-</table>
-<button class="btn button-hide btn-info" style="background-color: #74b588; color: white;">Hide</button>
+        var user = await UserManager.GetUserAsync(User);
 
-<p class="mt-5">
-    <a class="btn popular-courses" style="background-color: #74b588; color:white">See the most popular Courses</a>
-</p>
+        if (user.Role == "Admin")
+        {
+            <p class="mt-5">
+                <a class="btn" style="background-color: #74b588; color:white" asp-action="Create">Create New Course</a>
+            </p>
+        }
+    }
+        
+
+   
+
+    <p class="mt-5">
+        <a class="btn liked-courses" style="background-color: #74b588; color:white">See others favourite Courses</a>
+    </p>
+    <table class="table mt-5 liked-table">
+        <thead style="background-color: #74b588; color: white;">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Courses[0].Title)
+                </th>
+                <th>
+                    Count
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody-liked">
+        </tbody>
+    </table>
+    <button class="btn button-hide btn-info" style="background-color: #74b588; color: white;">Hide</button>
+
+    <p class="mt-5">
+        <a class="btn popular-courses" style="background-color: #74b588; color:white">See the most popular Courses</a>
+    </p>
 
 
 
 
-<table class="table mt-5 popular-table">
-    <thead style="background-color: #74b588; color: white;">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Courses[0].Title)
-            </th>
-            <th>
-                Count
-            </th>
-        </tr>
-    </thead>
-    <tbody class="tbody-popular">
-    </tbody>
-</table>
-<button class="btn button-hide-popular btn-info" style="background-color: #74b588; color: white;">Hide</button>
-<table class="table mt-5">
-    <thead style="background-color: #74b588; color: white;">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Courses[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Courses[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Courses[0].VideoUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Courses[0].Price)
-            </th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Courses) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a href=" @Html.DisplayFor(modelItem => item.VideoUrl)"> @Html.DisplayFor(modelItem => item.VideoUrl)</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-                <td>
-                    @if (User.Identity.Name == item.Student.Email) {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit </a>
-                    
-                    <a asp-action="Details" asp-route-id="@item.Id">Details </a> 
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        }
-                    else if ( !Model.PurchasedCourses.Contains(item))
-                    {
-                        <a style="background-color: #74b588; color: white;" asp-controller="Courses" asp-action="AddCourseToCart" asp-route-id="@item.Id" class="btn btn-info">Add to Cart</a>
-
-                    }
-                </td>
-            <td>
-                    @if (User.Identity.Name != item.Student.Email && !Model.WatchLaters.Contains(item))
-                    {
-                        <button style="background-color: #74b588; color: white;" class="watch btn btn-info" course-id="@item.Id"> Watch later</button>
-                   
-                    }
-            </td>
-              
-                <td>
-                    @if (User.Identity.Name != item.Student.Email)
+    <table class="table mt-5 popular-table">
+        <thead style="background-color: #74b588; color: white;">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Courses[0].Title)
+                </th>
+                <th>
+                    Count
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody-popular">
+        </tbody>
+    </table>
+    <button class="btn button-hide-popular btn-info" style="background-color: #74b588; color: white;">Hide</button>
+    <table class="table mt-5">
+        <thead style="background-color: #74b588; color: white;">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Courses[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Courses[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Courses[0].VideoUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Courses[0].Price)
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Courses)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <a href=" @Html.DisplayFor(modelItem => item.VideoUrl)">
+                            @Html.DisplayFor(modelItem => item.VideoUrl,  new { @class = "shortLink" })
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @if (User.Identity.Name == item.Student.Email)
                         {
-                            @if ( !Model.LikedCourses.Contains(item))
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit </a>
+
+                            <a asp-action="Details" asp-route-id="@item.Id">Details </a> 
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                        else if (!Model.PurchasedCourses.Contains(item))
+                        {
+                            <a style="background-color: #74b588; color: white;" asp-controller="Courses" asp-action="AddCourseToCart" asp-route-id="@item.Id" class="btn btn-info">Add to Cart</a>
+
+                        }
+                    </td>
+                    <td>
+                        @if (User.Identity.Name != item.Student.Email && !Model.WatchLaters.Contains(item))
+                        {
+                            <button style="background-color: #74b588; color: white;" class="watch btn btn-info" course-id="@item.Id"> Watch later</button>
+
+                        }
+                    </td>
+
+                    <td>
+                        @if (User.Identity.Name != item.Student.Email)
+                        {
+                            @if (!Model.LikedCourses.Contains(item))
                             {
-                            <i class="fa fa-thumbs-up" course-id="@item.Id"></i>
+                                <i class="fa fa-thumbs-up" course-id="@item.Id"></i>
                             }
                             else
                             {
-                            <i class="fa fa-thumbs-down " course-id="@item.Id"></i>
+                                <i class="fa fa-thumbs-down " course-id="@item.Id"></i>
 
 
                             }
                         }
-                </td>
-        </tr>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
-    </tbody>
-</table>
+else
+{
+    <div class="container">
+        <div class="row my-3 mb-5">
+            @foreach (var course in Model.Courses)
+            {
+                <div class="col-sm-3 col-md-6 col-sm-6 col-lg-4 mt-5 d-flex justify-content-center">
+                    <div class="card shadow" style="width: 18rem;">
+                        <img class="card-img-top text-center" style="width: 17rem; height: 260px" src="@course.CourseImg" alt="Card image cap">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@course.Title</h5>
+                            <p class="card-text">@course.Price <i class="bi bi-currency-euro"></i></p>
+                            <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id" class="btn rounded-0" style="border-color: #74b588;">Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
 
-<a class="btn btn-outline-primary btn-sm" asp-controller="Admin" asp-action="Test">Delete Student's Account</a>
 @section Scripts{
     <script>
         $(document).ready(function () {
