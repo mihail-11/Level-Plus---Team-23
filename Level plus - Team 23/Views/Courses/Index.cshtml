@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Level_plus___Team_23.Models.Course>
+﻿@model Level_plus___Team_23.DTO.AllCourses
+@using Microsoft.AspNetCore.Identity
 
 @{
     ViewData["Title"] = "Index";
@@ -9,27 +10,70 @@
 <p class="mt-5">
     <a class="btn" style="background-color: #74b588; color:white"  asp-action="Create">Create New Course</a>
 </p>
+
+<p class="mt-5">
+    <a class="btn liked-courses" style="background-color: #74b588; color:white">See others favourite Courses</a>
+</p>
+<table class="table mt-5 liked-table">
+    <thead style="background-color: #74b588; color: white;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Courses[0].Title)
+            </th>
+            <th>
+                Count
+            </th>
+        </tr>
+    </thead>
+    <tbody class="tbody-liked">
+    </tbody>
+</table>
+<button class="btn button-hide btn-info" style="background-color: #74b588; color: white;">Hide</button>
+
+<p class="mt-5">
+    <a class="btn popular-courses" style="background-color: #74b588; color:white">See the most popular Courses</a>
+</p>
+
+
+
+
+<table class="table mt-5 popular-table">
+    <thead style="background-color: #74b588; color: white;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Courses[0].Title)
+            </th>
+            <th>
+                Count
+            </th>
+        </tr>
+    </thead>
+    <tbody class="tbody-popular">
+    </tbody>
+</table>
+<button class="btn button-hide-popular btn-info" style="background-color: #74b588; color: white;">Hide</button>
 <table class="table mt-5">
     <thead style="background-color: #74b588; color: white;">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Courses[0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Courses[0].Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VideoUrl)
+                @Html.DisplayNameFor(model => model.Courses[0].VideoUrl)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.Courses[0].Price)
             </th>
+            <th></th>
             <th></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Courses) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -43,17 +87,239 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
+                <td>
+                    @if (User.Identity.Name == item.Student.Email) {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit </a>
+                    
+                    <a asp-action="Details" asp-route-id="@item.Id">Details </a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                    else if ( !Model.PurchasedCourses.Contains(item))
+                    {
+                        <a style="background-color: #74b588; color: white;" asp-controller="Courses" asp-action="AddCourseToCart" asp-route-id="@item.Id" class="btn btn-info">Add to Cart</a>
+
+                    }
+                </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CourseID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CourseID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CourseID">Delete</a>
+                    @if (User.Identity.Name != item.Student.Email && !Model.WatchLaters.Contains(item))
+                    {
+                        <button style="background-color: #74b588; color: white;" class="watch btn btn-info" course-id="@item.Id"> Watch later</button>
+                   
+                    }
             </td>
-            <td>
-                <a style="background-color: #74b588; color: white;" asp-controller="Courses" asp-action="AddCourseToCart" asp-route-id="@item.Id" class="btn btn-info">Add to Cart</a>
-            </td>
+              
+                <td>
+                    @if (User.Identity.Name != item.Student.Email)
+                        {
+                            @if ( !Model.LikedCourses.Contains(item))
+                            {
+                            <i class="fa fa-thumbs-up" course-id="@item.Id"></i>
+                            }
+                            else
+                            {
+                            <i class="fa fa-thumbs-down " course-id="@item.Id"></i>
+
+
+                            }
+                        }
+                </td>
         </tr>
 }
     </tbody>
 </table>
 
 <a class="btn btn-outline-primary btn-sm" asp-controller="Admin" asp-action="Test">Delete Student's Account</a>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var items = null
+            var populars = null
+
+            $(".liked-table").hide()
+            $(".popular-table").hide()
+
+            $(document.body).on("click", ".buy", function () {
+                var link = $(this)
+                $.ajax({
+                    url: "/Courses/Buy/" + link.attr("course-id"),
+                    method: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data)
+                        if (data.success == true) {
+
+                          
+                            $(link).fadeOut(1000)
+                        }
+                        else {
+
+                         
+                            $(link).fadeOut(1000)
+                        }
+                    }
+
+                });
+            });
+
+            $(document.body).on("click", ".watch", function () {
+                var link = $(this)
+                $.ajax({
+                    url: "/Courses/WatchLater/" + link.attr("course-id"),
+                    method: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.success == true) {
+
+                           
+                            $(link).fadeOut(1000)
+                        }
+                        else {
+
+                           
+                            $(link).fadeOut(1000)
+                        }
+                    }
+
+                });
+            });
+
+
+            $(document.body).on("click", ".fa-thumbs-up", function () {
+                var link = $(this)
+                $.ajax({
+                    url: "/Courses/PutIntoFavourite/" + link.attr("course-id"),
+                    method: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.success == true) {
+
+                            $(link).removeClass("fa-thumbs-up")
+                            $(link).addClass("fa-thumbs-down")
+
+                        }
+                        else {
+
+                           
+                            $(link).removeClass("fa-thumbs-up")
+                            $(link).addClass("fa-thumbs-down")
+
+                        }
+                    }
+
+                });
+            });
+
+            $(document.body).on("click", ".fa-thumbs-down", function () {
+                var link = $(this)
+                $.ajax({
+                    url: "/Courses/RemoveFromFavourite/" + link.attr("course-id"),
+                    method: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.success == true) {
+
+                           
+                            $(link).removeClass("fa-thumbs-down")
+                            $(link).addClass("fa-thumbs-up")
+
+                        }
+                        else {
+
+                         
+                            $(link).removeClass("fa-thumbs-down")
+                            $(link).addClass("fa-thumbs-up")
+
+                        }
+
+                    }
+
+                });
+            });
+
+            $(document.body).on("click", ".button-hide", function () {
+                $(".liked-table").fadeOut(1000)
+                $(this).hide()
+
+            });
+
+            $(".button-hide").hide()
+            $(".button-hide-popular").hide()
+
+            $(document.body).on("click", ".liked-courses", function () {
+                var link = $(this)
+                if (items == null) {
+                    $.ajax({
+                        url: "/Courses/GiveExampleCourses/",
+                        method: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data)
+                            if (data) {
+                                items = data
+                                data.courses.forEach(i => {
+
+                                    $(".tbody-liked").append('<tr><td> ' + i.title + ' </td><td> ' + i.count + ' </td></tr>')
+
+                                });
+
+
+                                $(".liked-table").fadeIn(1000);
+                                $(".button-hide").show();
+
+
+                            }
+
+                        }
+
+                    });
+                }
+                else {
+                    $(".liked-table").fadeIn(1000);
+                    $(".button-hide").show();
+                }
+            });
+
+            $(document.body).on("click", ".popular-courses", function () {
+                var link = $(this)
+                if (populars == null) {
+                    $.ajax({
+                        url: "/Courses/Popular/",
+                        method: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data)
+                            if (data) {
+                                populars = data
+                                data.courses.forEach(i => {
+
+                                    $(".tbody-popular").append('<tr><td> ' + i.title + ' </td><td> ' + i.count + ' </td></tr>')
+
+                                });
+
+
+                                $(".popular-table").fadeIn(1000);
+                                $(".button-hide-popular").show();
+
+
+                            }
+
+                        }
+
+                    });
+                }
+                else {
+                    $(".popular-table").fadeIn(1000);
+                    $(".button-hide-popular").show();
+                }
+            });
+
+            $(document.body).on("click", ".button-hide-popular", function () {
+                $(".popular-table").fadeOut(1000)
+                $(this).hide()
+
+            });
+
+        });
+    </script>
+
+}

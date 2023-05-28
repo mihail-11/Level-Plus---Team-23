@@ -6,12 +6,10 @@ namespace Level_plus___Team_23.Models
     public class WatchLater
     {
 
-        public WatchLater()
-        {
-            this.Courses = new List<Course>();
-        }
-        public Student Student { get; set; }
+        public int WatchLaterID { get; set; }
 
-        public virtual ICollection<Course> Courses { get; set; }
+        public ApplicationUser Student { get; set; }
+
+        public Course Course { get; set; }
     }
 }

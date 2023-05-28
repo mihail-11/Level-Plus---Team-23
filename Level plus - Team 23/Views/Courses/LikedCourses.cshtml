@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Level_plus___Team_23.Models.Course>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 style="color: #495057">Courses</h2>
+
+
+<table class="table mt-5">
+    <thead style="background-color: #74b588; color: white;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VideoUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a href=" @Html.DisplayFor(modelItem => item.VideoUrl)"> @Html.DisplayFor(modelItem => item.VideoUrl)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
