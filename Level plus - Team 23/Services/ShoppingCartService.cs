@@ -17,6 +17,7 @@ namespace Level_plus___Team_23.Services
         private readonly IRepository<EmailMessage> _mailRepository;
         private readonly IRepository<CourseInOrder> _courseInOrderRepository;
         private readonly IUserRepository _userRepository;
+        private EmailService emailService;
 
         public ShoppingCartService(IRepository<ShoppingCart> shoppingCartRepository, IUserRepository userRepository, IRepository<EmailMessage> mailRepository, IRepository<Order> orderRepository, IRepository<CourseInOrder> courseInOrderRepository)
         {
@@ -25,6 +26,7 @@ namespace Level_plus___Team_23.Services
             _orderRepository = orderRepository;
             _courseInOrderRepository = courseInOrderRepository;
             _mailRepository = mailRepository;
+            emailService = new EmailService();
         }
 
 
@@ -136,6 +138,13 @@ namespace Level_plus___Team_23.Services
                 foreach (var item in courseInOrders)
                 {
                     this._courseInOrderRepository.Insert(item);
+                    var emailMessage = new EmailMessage
+                    {
+                        mailAddress = loggedInUser.Email,
+                        course = item.Course,
+                    };
+
+                    emailService.SendEmailAsync(emailMessage);
                 }
 
                 loggedInUser.UserCart.CourseInShoppingCarts.Clear();
