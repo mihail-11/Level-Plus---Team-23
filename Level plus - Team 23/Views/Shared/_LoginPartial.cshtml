@@ -1,30 +1,4 @@
-﻿@* @using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
-</ul> *@
-
+﻿
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -37,13 +11,37 @@ else
 
         if (user.Role == "Admin") //TODO: check if admin
         {
-            @*
+            
             <li class="nav-item">
-                <a class="btn btn-outline-primary btn-sm" asp-controller="Admin" asp-action="DeleteStudentsAccount">Delete Student's Account</a>
+                <a class="nav-link text-dark" asp-controller="Admin" asp-action="DeleteStudentsAccount">Users</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-controller="LevelPlusAccount" asp-action="GiveRole">Give Role</a>
-            </li>*@
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingCart" asp-action="Index">Shopping Cart</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="Bought">
+                    Bought Courses
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="LikedCourses">
+                    Favourite List
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="WatchLaterCourses">
+                    Watch Later
+                </a>
+            </li>
         }
 
         <li class="nav-item">

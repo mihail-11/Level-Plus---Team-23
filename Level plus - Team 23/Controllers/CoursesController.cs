@@ -44,7 +44,8 @@ namespace Level_plus___Team_23.Controllers
 
             string user = GetUserID();
             List<Course> courses = _context.courses.Select(x => new Course() { Id = x.Id, Description = x.Description
-             , Title = x.Title, Price = x.Price, VideoUrl = x.VideoUrl, Student = x.Student }).ToList();
+             , Title = x.Title, Price = x.Price, VideoUrl = x.VideoUrl,
+                CourseImg=x.CourseImg, Student = x.Student }).ToList();
             List<Course> purchasedCourses = entitiesOrders
                 .Include("CourseInOrders.Course")
                 .Where(u => u.UserId == user)
@@ -120,7 +121,7 @@ namespace Level_plus___Team_23.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CourseID,Title,Description,VideoUrl,Price")] Course course)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,VideoUrl,CourseImg,Price")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -154,7 +155,7 @@ namespace Level_plus___Team_23.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("CourseID,Title,Description,VideoUrl,Price")] Course course)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Title,Description,VideoUrl,CourseImg,Price")] Course course)
         {
             if (id != course.Id)
             {
